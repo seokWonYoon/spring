@@ -38,13 +38,13 @@ public class BeanInjectionTest {
 	public void beanInjectionServiceTest() {
 		/***Given***/
 		// container.getBean("설정파일에서 선언한 bean id")
-		MemberServiceInf meberService = container.getBean("memberService", MemberServiceInf.class);
+		MemberServiceInf memberService = container.getBean("memberService", MemberServiceInf.class);
 		
 		/***When***/
-		List<MemberVO> memberList = meberService.getMemberList();
+		List<MemberVO> memberList = memberService.getMemberList();
 		
 		/***Then***/
-		assertNotNull(meberService);
+		assertNotNull(memberService);
 		
 	}
 

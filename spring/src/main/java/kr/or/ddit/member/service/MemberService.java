@@ -5,6 +5,10 @@ package kr.or.ddit.member.service;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
 import kr.or.ddit.member.dao.MemberDaoInf;
 import kr.or.ddit.member.model.MemberVO;
 
@@ -25,10 +29,13 @@ import kr.or.ddit.member.model.MemberVO;
  *
  * </pre>
  */
+@Service("memberService")
 public class MemberService implements MemberServiceInf {
-	
+	@Resource(name="memberDao")
 	private MemberDaoInf memberDao;
+	
 	private List<MemberVO> memberList; //저장소
+//	private MemberServiceInf memberService;
 	
 	public MemberService() {
 	}
@@ -48,7 +55,7 @@ public class MemberService implements MemberServiceInf {
 	}
 	
 	
-
+	
 	public MemberDaoInf getMemberDao() {
 		return memberDao;
 	}

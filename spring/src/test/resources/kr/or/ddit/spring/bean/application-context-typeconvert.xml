@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="boardVo" class="kr.or.ddit.spring.bean.BoardVO">
+		<property name="board_seq" value="1"></property>
+		<property name="title" value="title"></property>
+		<property name="contents" value="contents"></property>
+		<property name="reg_id" value="brown"></property>
+		<property name="reg_date" value="2018-05-21"></property>
+		<property name="readCnt" value="1,234"></property>
+	</bean>
+	
+<!-- 	<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean"> -->
+<!-- 		<property name="converters"> -->
+<!-- 		<set> -->
+<!-- 			<bean id="customDateEditor" class="kr.or.ddit.spring.bean.convert.CustomDateEditor"></bean> -->
+<!-- 		</set> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+	
+	<bean id="dateEditor" class="org.springframework.beans.propertyeditors.CustomDateEditor">		
+		<constructor-arg>
+			<bean class="java.text.SimpleDateFormat">
+				<constructor-arg value="yyyy-MM-dd"/>
+			</bean>
+		</constructor-arg>
+		<constructor-arg value="true"/>
+	</bean>	
+<!-- 	<bean id="customEditorConfigurer"  class="org.springframework.beans.factory.config.CustomEditorConfigurer"> -->
+<!-- 		<property name="customEditors"> -->
+<!-- 			<map> -->
+<!-- 				<entry key ="java.util.Date" value-ref="dateEditor" /> -->
+<!-- 			</map> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean"></bean>
+</beans>

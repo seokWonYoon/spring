@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+	<context:annotation-config/>
+	<context:component-scan base-package="kr.or.ddit"/>
+	<!-- 공통 관심사항  -->
+	<bean id="aspect" class="kr.or.ddit.spring.aop.Aspect"/>
+	
+	<aop:config>
+		<aop:pointcut id="logging" expression="execution(* kr.or.ddit..*Service.*(..))"/>
+<!-- 		<aop:pointcut id="logging" expression="expression(public * *(..))"/> -->
+
+		<!--  ref : 적용할 공통 관심사항  -->
+		<aop:aspect ref="aspect">
+			<aop:before method="before" pointcut-ref="logging"/>
+			<aop:after method="after" pointcut-ref="logging"/>
+			<aop:around method="around" pointcut-ref="logging"/>
+		</aop:aspect>
+	</aop:config>
+	
+	
+</beans>
