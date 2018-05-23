@@ -35,10 +35,11 @@ public class AopTest {
 	@Test
 	public void aopTest() {
 		/***Given***/
-		
+		List<MemberVO> memberList = null;
 
 		/***When***/
-		List<MemberVO> memberList = memberService.getMemberList();
+			memberList = memberService.getMemberList();
+
 		
 		/***Then***/
 		assertNotNull(memberService);
