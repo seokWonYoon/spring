@@ -24,10 +24,6 @@ public class AopTest {
 	private MemberServiceInf memberService;
 	
 	
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
 	@Before
 	public void setUp(){
 	}

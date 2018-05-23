@@ -25,6 +25,7 @@ import org.slf4j.LoggerFactory;
  *
  * </pre>
  */
+
 public class Aspect {
 	Logger logger = LoggerFactory.getLogger(Aspect.class);
 	public void before(JoinPoint joinPoint) {

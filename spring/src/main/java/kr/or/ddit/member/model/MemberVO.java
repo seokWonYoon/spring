@@ -1,7 +1,20 @@
 package kr.or.ddit.member.model;
 
+import java.util.Date;
+
 public class MemberVO {
 	private String mem_id,mem_pass,mem_name,mem_add1,mem_add2,mem_zip, mem_alias, mem_profile;
+	Date mem_bir;
+	
+	
+	
+	public Date getMem_bir() {
+		return mem_bir;
+	}
+
+	public void setMem_bir(Date mem_bir) {
+		this.mem_bir = mem_bir;
+	}
 
 	public String getMem_id() {
 		return mem_id;

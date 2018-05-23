@@ -7,10 +7,13 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import kr.or.ddit.member.dao.MemberDaoInf;
 import kr.or.ddit.member.model.MemberVO;
+import kr.or.ddit.spring.aop.AnnotaionAspect;
 
 /**
  * MemberService.java
@@ -31,6 +34,8 @@ import kr.or.ddit.member.model.MemberVO;
  */
 @Service("memberService")
 public class MemberService implements MemberServiceInf {
+	Logger logger = LoggerFactory.getLogger(AnnotaionAspect.class);
+	
 	@Resource(name="memberDao")
 	private MemberDaoInf memberDao;
 	
@@ -38,6 +43,7 @@ public class MemberService implements MemberServiceInf {
 //	private MemberServiceInf memberService;
 	
 	public MemberService() {
+		logger.debug("{}","public MemberService() : 생성자 ");
 	}
 
 	public void setMemberDao(MemberDaoInf memberDao) {
@@ -53,7 +59,6 @@ public class MemberService implements MemberServiceInf {
 		// TODO Auto-generated method stub
 		return memberList = memberDao.getMemberList();
 	}
-	
 	
 	
 	public MemberDaoInf getMemberDao() {
