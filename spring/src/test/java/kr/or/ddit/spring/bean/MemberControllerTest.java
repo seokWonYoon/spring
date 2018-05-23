@@ -87,7 +87,7 @@ public class MemberControllerTest {
 	@Test
 	public void memberListTest(){
 		/***Given***/
-		MvcResult result = mockMvc.perform(get("/member/list")); 
+//		MvcResult result = mockMvc.perform(get("/member/list")); 
 
 		/***When***/
 		
