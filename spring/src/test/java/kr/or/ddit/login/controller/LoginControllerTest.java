@@ -1,4 +1,4 @@
-package kr.or.ddit.member.controller;
+package kr.or.ddit.login.controller;
 
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*; 
@@ -7,7 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import kr.or.ddit.board.model.BoardVO;
 import kr.or.ddit.member.controller.MemberController;
 import kr.or.ddit.member.dao.MemberDaoInf;
 import kr.or.ddit.member.model.MemberVO;
@@ -17,6 +20,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -30,86 +34,72 @@ import org.springframework.web.servlet.ModelAndView;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:kr/or/ddit/spring/servlet-context.xml",
 							 "classpath:kr/or/ddit/spring/application-context.xml"})
-@WebAppConfiguration // applicationcontext를 webapplicationcontext 웹기반으로 만들어준다
-public class MemberControllerTest {
+@WebAppConfiguration
+public class LoginControllerTest {
 
 	@Resource // @Autowired
 	private WebApplicationContext ctx; // spring container
 	private MockMvc mockMvc;
 	
-	@Resource(name="memberController")
-	private MemberController memberController;
+	@Resource(name="loginController")
+	private LoginController loginController;
 	
-	@Resource(name="memberDao")
-	MemberDaoInf memberDao;
-	
-	@Resource(name="memberService")
-	MemberServiceInf memberService;
-	
-	@Test
-	public void repositoryAnnotationBeanTest() {
-		assertNotNull(memberDao);
-	}
-	
-	@Test
-	public void serviceAnnotationBeanTest() {
-		assertNotNull(memberService);
-		assertEquals(memberDao,memberService.getMemberDao());
-		
-	}
-	
-	@Test
-	public void memberControllerTest() {
-		assertNotNull(memberController);
-		assertEquals(memberService,memberController.getMemberServiceInf());
-		
-	}
-
 	@Before
 	public void setup(){
 		mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
 	}
+	
+	/**
+	 * 
+	* Method : loginTest
+	* 최초작성일 : 2018. 5. 24.
+	* 작성자 : "Y.S.W"
+	* 변경이력 :
+	* @throws Exception
+	* Method 설명 : 로그인 폼 요청 테스트
+	 */
 	@Test
-	public void createTest() {
+	public void loginTest() throws Exception{
 		/***Given***/
 		
-
+		// localhost:8070/spring/login
+		MvcResult result = mockMvc.perform(get("/login")).andReturn();
+		
 		/***When***/
-		
-		
+		ModelAndView mav = result.getModelAndView();
 		/***Then***/
-		assertNotNull(memberController);
+		assertEquals("login/login", mav.getViewName());
 	}
 	
+	/**
+	 * 
+	* Method : loginProcessTest
+	* 최초작성일 : 2018. 5. 24.
+	* 작성자 : "Y.S.W"
+	* 변경이력 :
+	* @throws Exception
+	* Method 설명 : 로그인 처리 테스트
+	 */
 	@Test
-	public void WebApplicationContextTest() {
+	public void loginProcessTest() throws Exception {
 		/***Given***/
-		
-
-		/***When***/
-		MemberDaoInf memberDao =ctx.getBean("memberDao", MemberDaoInf.class);
-		List<MemberVO> memberList = memberDao.getMemberList();
-		
-		/***Then***/
-		assertNotNull(memberDao);
-		assertEquals(27, memberList.size());
-
-	}
-	
-	@Test
-	public void memberListTest() throws Exception{
-		/***Given***/
-		MvcResult result = mockMvc.perform(get("/member/list")).andReturn(); 
+		MvcResult result = mockMvc.perform(post("/login").param("mem_id", "sally").param("mem_pass", "1234")).andReturn();
 
 		/***When***/
 		ModelAndView mav = result.getModelAndView();
-		Map<String, Object> model = mav.getModel();
+		MockHttpServletRequest request = result.getRequest();
+		HttpSession session = request.getSession();
 		
-		List<MemberVO> memberList = (List<MemberVO>) model.get("memberList");
+		Map<String, Object> model = mav.getModel();
+		List<BoardVO> boardList = (List<BoardVO>) model.get("boardList");
+		
+		MemberVO login_user = (MemberVO)session.getAttribute("LOGIN_USER");
+		
 		/***Then***/
-		assertEquals("member/memberList", mav.getViewName());
-		assertEquals(27, memberList.size());
+		assertEquals(5, boardList.size());
+		assertEquals("main/main", mav.getViewName());
+		assertEquals("sally", login_user.getMem_id());
+		assertEquals("44888", login_user.getMem_name());
+		assertEquals("병아리", login_user.getMem_alias());
 	}
-	
-	
 }

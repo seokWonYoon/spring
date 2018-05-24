@@ -9,5 +9,10 @@
 		SELECT * 
 		  FROM webmember
   </select>
-  
+	<!-- 회원정보조회 -->
+	<select id="getMember" resultType="MemberVO" parameterType="MemberVO">
+		SELECT * 
+		  FROM webmember
+		 WHERE mem_id = #{mem_id}
+	</select>  
 </mapper>

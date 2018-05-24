@@ -9,7 +9,7 @@
 	
 	<!-- annotation 기반 spring mvc 설정 모음 -->
 	<mvc:annotation-driven/>
-<!-- 	<mvc:default-servlet-handler/> -->
+	<mvc:default-servlet-handler/>
 
 	<!-- controller 스캔 추가 -->
 	<context:annotation-config/>

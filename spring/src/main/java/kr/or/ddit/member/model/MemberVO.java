@@ -3,11 +3,10 @@ package kr.or.ddit.member.model;
 import java.util.Date;
 
 public class MemberVO {
-	private String mem_id,mem_pass,mem_name,mem_add1,mem_add2,mem_zip, mem_alias, mem_profile;
+	private String mem_id, mem_pass, mem_name, mem_add1, mem_add2, mem_zip,
+			mem_alias, mem_profile;
 	Date mem_bir;
-	
-	
-	
+
 	public Date getMem_bir() {
 		return mem_bir;
 	}
@@ -88,6 +87,22 @@ public class MemberVO {
 				+ ", mem_alias=" + mem_alias + ", mem_profile=" + mem_profile
 				+ "]\n<br>";
 	}
-	
-	
+
+	/**
+	 * 
+	 * Method : passwordVerify 최초작성일 : 2018. 5. 24. 작성자 : "Y.S.W" 변경이력 :
+	 * 
+	 * @param memberVO
+	 * @return Method 설명 : 사용자 비밀번호 검증
+	 */
+	public boolean passwordVerify(MemberVO memberVO) {
+		if (this.getMem_id().equals(memberVO.getMem_id())
+				&& this.getMem_pass().equals(memberVO.getMem_pass())) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
 }

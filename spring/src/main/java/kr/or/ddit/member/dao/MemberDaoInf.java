@@ -16,4 +16,6 @@ public interface MemberDaoInf {
  */
 	List<MemberVO> getMemberList();
 
+	MemberVO getMember(MemberVO memberVO);
+
 }

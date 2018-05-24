@@ -36,8 +36,16 @@ public class MemberDao implements MemberDaoInf {
 	@Override
 	public List<MemberVO> getMemberList() {
 		sqlSession = sqlSessionFactory.openSession();
-		List<MemberVO>	memberList = 	sqlSession.selectList("member.getMemberList");
+		List<MemberVO>	memberList = sqlSession.selectList("member.getMemberList");
 		sqlSession.close();
 		return memberList;
+	}
+
+	@Override
+	public MemberVO getMember(MemberVO memberVO) {
+		sqlSession = sqlSessionFactory.openSession();
+		MemberVO memberVOResult = sqlSession.selectOne("member.getMember", memberVO);
+		sqlSession.close();
+		return memberVOResult;
 	}
 }
