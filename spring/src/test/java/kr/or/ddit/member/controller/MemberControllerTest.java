@@ -1,4 +1,4 @@
-package kr.or.ddit.spring.bean;
+package kr.or.ddit.member.controller;
 
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*; 
@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import kr.or.ddit.member.controller.MemberController;
 import kr.or.ddit.member.dao.MemberDaoInf;
 import kr.or.ddit.member.model.MemberVO;
+import kr.or.ddit.member.service.MemberServiceInf;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -36,15 +37,31 @@ public class MemberControllerTest {
 	@Resource(name="memberController")
 	private MemberController memberController;
 	
-	/**
-	 * 
-	* Method : test
-	* 최초작성일 : 2018. 5. 23.
-	* 작성자 : "Y.S.W"
-	* 변경이력 :
-	* Method 설명 : memberController bean 생성 테스트
-	 */
+	@Resource(name="memberDao")
+	MemberDaoInf memberDao;
 	
+	@Resource(name="memberService")
+	MemberServiceInf memberService;
+	
+	@Test
+	public void repositoryAnnotationBeanTest() {
+		assertNotNull(memberDao);
+	}
+	
+	@Test
+	public void serviceAnnotationBeanTest() {
+		assertNotNull(memberService);
+		assertEquals(memberDao,memberService.getMemberDao());
+		
+	}
+	
+	@Test
+	public void memberControllerTest() {
+		assertNotNull(memberController);
+		assertEquals(memberService,memberController.getMemberServiceInf());
+		
+	}
+
 	@Before
 	public void setup(){
 		mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
@@ -76,14 +93,6 @@ public class MemberControllerTest {
 
 	}
 	
-	/**
-	 * 
-	* Method : memberListTest
-	* 최초작성일 : 2018. 5. 23.
-	* 작성자 : "Y.S.W"
-	* 변경이력 :
-	* Method 설명 :
-	 */
 	@Test
 	public void memberListTest(){
 		/***Given***/
