@@ -16,14 +16,12 @@ import kr.or.ddit.member.service.MemberServiceInf;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.ui.Model;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -105,6 +103,7 @@ public class MemberControllerTest {
 		ModelAndView mav = result.getModelAndView();
 		Map<String, Object> model = mav.getModel();
 		
+		@SuppressWarnings("unchecked")
 		List<MemberVO> memberList = (List<MemberVO>) model.get("memberList");
 		/***Then***/
 		assertEquals("member/memberList", mav.getViewName());

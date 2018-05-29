@@ -1,0 +1,1 @@
+delete from webmember where mem_id in('brown','brown222');

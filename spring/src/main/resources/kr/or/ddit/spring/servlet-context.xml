@@ -15,16 +15,72 @@
 	<context:annotation-config/>
 	<context:component-scan base-package="kr.or.ddit" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
 	</context:component-scan>
 	
-	<!--HandlerMapping추가 -->
-	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"></bean>
-	<!--Handler adapter(invoker)추가 -->
-	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"></bean>
+<!-- 	HandlerMapping추가 -->
+<!-- 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"></bean> -->
+<!-- 	Handler adapter(invoker)추가 -->
+<!-- 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"></bean> -->
+	
 	<!-- view resolver -->
+	
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="0"></property>
+	</bean>
+	
+	<bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
+		<property name="order" value="1"></property>
+		<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"></property>
+	</bean>
+	
+	<bean id="tilesConfiguer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles/tiles-definition.xml</value>
+			</list>
+		</property>
+	</bean>
+	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="2"></property>
 		<property name="prefix" value="/WEB-INF/views/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
 	
+	<!-- json view -->
+	<bean id="pageJsonReport" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+	
+	</bean>
+	
+	<!--MultipartResolver추가 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxInMemorySize" value="1000000"/>
+		<property name="maxUploadSize" value="1000000"/>
+		
+	</bean>
+
+	<!--message source 추가 -->
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>classpath:kr/or/ddit/msg/error</value>
+				<value>classpath:kr/or/ddit/msg/message</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
+	
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
+	
+			<!-- * : 단일세그먼트 **:멀티세그먼트 ?:싱글캐릭터 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+				<property name="paramName" value="language"/>
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>

@@ -9,11 +9,8 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import kr.or.ddit.member.dao.MemberDaoInf;
 import kr.or.ddit.member.model.MemberVO;
-import kr.or.ddit.member.service.MemberServiceInf;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

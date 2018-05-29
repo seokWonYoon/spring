@@ -9,5 +9,7 @@
 </head>
 <body>
 인덱스입니다.
+
+<img src="${pageContext.request.contextPath }/requestPart/pictureDownload?pictureName=brown.png">
 </body>
 </html>

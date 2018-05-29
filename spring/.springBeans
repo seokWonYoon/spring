@@ -16,6 +16,9 @@
 		<config>src/test/resources/kr/or/ddit/spring/aop/application-context-annoaop.xml</config>
 		<config>src/main/resources/kr/or/ddit/spring/application-context.xml</config>
 		<config>src/main/resources/kr/or/ddit/spring/servlet-context.xml</config>
+		<config>src/main/resources/kr/or/ddit/spring/context-interceptor.xml</config>
+		<config>src/main/resources/kr/or/ddit/spring/context-datasource.xml</config>
+		<config>src/main/resources/kr/or/ddit/spring/context-transaction.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

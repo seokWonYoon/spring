@@ -7,6 +7,20 @@ public class MemberVO {
 			mem_alias, mem_profile;
 	Date mem_bir;
 
+	public MemberVO(String mem_id, String mem_pass, String mem_name,
+			String mem_add1, String mem_add2, String mem_zip, String mem_alias) {
+		this.mem_id = mem_id;
+		this.mem_pass = mem_pass;
+		this.mem_name = mem_name;
+		this.mem_add1 = mem_add1;
+		this.mem_add2 = mem_add2;
+		this.mem_zip = mem_zip;
+		this.mem_alias = mem_alias;
+	}
+
+	public MemberVO() {
+	}
+
 	public Date getMem_bir() {
 		return mem_bir;
 	}

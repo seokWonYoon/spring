@@ -6,7 +6,6 @@ package kr.or.ddit.spring.bean.convert;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.junit.runner.RunWith;
 import org.springframework.core.convert.converter.Converter;
 
 /**

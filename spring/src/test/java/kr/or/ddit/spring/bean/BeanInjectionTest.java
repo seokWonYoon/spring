@@ -41,7 +41,7 @@ public class BeanInjectionTest {
 		MemberServiceInf memberService = container.getBean("memberService", MemberServiceInf.class);
 		
 		/***When***/
-		List<MemberVO> memberList = memberService.getMemberList();
+//		List<MemberVO> memberList = memberService.getMemberList();
 		
 		/***Then***/
 		assertNotNull(memberService);

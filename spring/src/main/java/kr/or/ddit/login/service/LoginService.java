@@ -10,7 +10,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import kr.or.ddit.member.dao.MemberDao;
 import kr.or.ddit.member.dao.MemberDaoInf;
 import kr.or.ddit.member.model.MemberVO;
 
@@ -19,8 +18,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * LoginService.java

@@ -7,19 +7,14 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import kr.or.ddit.board.model.BoardVO;
-import kr.or.ddit.member.controller.MemberController;
-import kr.or.ddit.member.dao.MemberDaoInf;
 import kr.or.ddit.member.model.MemberVO;
-import kr.or.ddit.member.service.MemberServiceInf;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -27,7 +22,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.ui.Model;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -91,6 +85,8 @@ public class LoginControllerTest {
 		HttpSession session = request.getSession();
 		
 		Map<String, Object> model = mav.getModel();
+		
+		@SuppressWarnings("unchecked")
 		List<BoardVO> boardList = (List<BoardVO>) model.get("boardList");
 		
 		MemberVO login_user = (MemberVO)session.getAttribute("LOGIN_USER");

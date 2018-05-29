@@ -14,5 +14,10 @@
 		SELECT * 
 		  FROM webmember
 		 WHERE mem_id = #{mem_id}
-	</select>  
+	</select>
+	
+	<insert id="insertMember" parameterType="MemberVO">
+	INSERT INTO webmember(mem_id, mem_pass, mem_name, mem_bir, mem_add1, mem_add2, mem_zip, mem_alias)
+	VALUES (#{mem_id}, #{mem_pass}, #{mem_name}, sysdate, #{mem_add1}, #{mem_add2}, #{mem_zip}, #{mem_alias})
+	</insert>  
 </mapper>

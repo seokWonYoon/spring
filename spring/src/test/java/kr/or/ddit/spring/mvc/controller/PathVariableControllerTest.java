@@ -3,7 +3,6 @@ package kr.or.ddit.spring.mvc.controller;
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
-import java.util.List;
 
 import javax.annotation.Resource;
 

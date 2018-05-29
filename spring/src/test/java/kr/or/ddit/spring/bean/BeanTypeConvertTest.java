@@ -6,7 +6,6 @@ package kr.or.ddit.spring.bean;
 import static org.junit.Assert.*;
 
 import java.util.Calendar;
-import java.util.Date;
 
 import javax.annotation.Resource;
 

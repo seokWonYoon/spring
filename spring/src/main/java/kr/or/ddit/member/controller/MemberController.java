@@ -10,7 +10,6 @@ import javax.annotation.Resource;
 import kr.or.ddit.member.model.MemberVO;
 import kr.or.ddit.member.service.MemberServiceInf;
 
-import org.junit.runner.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;

@@ -74,8 +74,7 @@ public class ModelAttributeControllerTest {
 	@Test
 	public void methodAModleAttributeTest() throws Exception {
 		/*** Given ***/
-		MvcResult result = mockMvc.perform(get("/modelAttribute/methodA"))
-				.andReturn();
+		MvcResult result = mockMvc.perform(get("/modelAttribute/methodA")).andReturn();
 
 		/*** When ***/
 		ModelAndView mav = result.getModelAndView();
